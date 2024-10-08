@@ -1,0 +1,210 @@
+---
+title: "Caracterización de clientes"
+author: "Nicolás Quenguan"
+format: html
+editor: visual
+---
+
+# Laboratorio 1
+
+En este cuaderno se usarán diferentes métodos de estadística descriptiva multivariada que permiten descubrir las posibles asociaciones que hay entre individuos, grupos de individuos a través de las mediciones en variables cuantitativas como cualitativas. Se hará uso de **ACM, ACP**
+
+```{r librerias , results='hide'}
+library(FactoClass)
+library(glmtoolbox)
+library(dplyr)
+
+```
+
+## Lectura de datos
+
+Se utilizará el archivo *datosBancoMod.csv* modificado en python.
+
+```{r lecturadaDatos}
+datos <- read.csv(file = 'C:\\Users\\6nico\\Documents\\Académico\\Talento Tech\\Tecnico\\datosBancoMod.csv')
+```
+
+```{r}
+#| echo: false
+datos <- datos %>%
+  mutate(deposit = ifelse(y == 1, "si", "no"))
+
+datos$deposit <- factor(datos$deposit)
+```
+
+Ahora se extraerán las variables categóricas y cuantitativas:
+
+```{r variables }
+str(datos)
+categoricas <- sapply(datos, is.character); categoricas
+nameCat <- as.vector(names(categoricas[categoricas]))
+cuantitativas <- sapply(datos, is.numeric) ; cuantitativas
+```
+
+```{r factores}
+datos[] <- lapply(datos, function(x) if (is.character(x)) as.factor(x) else x)
+datos$job <- relevel(datos$job, ref = 'bc')
+datos$marital <- relevel(datos$marital, ref = 'single')
+datos$education <- relevel(datos$education, ref = 'primary')
+datos$default <- relevel(datos$default, ref = 'no')
+datos$housing <- relevel(datos$housing, ref = 'no' )
+datos$loan <- relevel(datos$loan, ref = 'no')
+datos$contact <- relevel(datos$contact, ref = 'unknown')
+datos$month <- relevel(datos$month, ref = 'jan')
+datos$poutcome <- relevel(datos$poutcome, ref = 'failure')
+```
+
+Se realiza una prueba Chi cuadrado para determinar si hay independencia de las tablas de contingencia entre la variable **y** y las variables **cualitativas**.
+
+```{r Tabla}
+chisq.carac(datos[,nameCat], datos$y,decr = T)
+```
+
+Con base en los valores p, parece que las tablas de contingencia entre **y** y esas variables no son independientes.
+
+## ACS
+
+```{r Perfiles_fila}
+# par(mfrow=c(3,3), mai=c(0.3,1,0.2,0.1), las=1,cex=0.4)
+for (i in nameCat) {
+  tc <- unclass(table(datos$y, datos[[i]]))
+  plotct(tc,'row')
+  title(main = i)
+}
+```
+
+Se observa que para la variable **job** los que aceptan el depósito suelen ser muy similares al promedio, la única diferencia está en que hay una ligera mayor proporción de quienes no trabajan, esto puede ser por la forma en que se establecieron las categorías, en las cuales hay muchos pensionados a diferencia de estudiantes y desempleados.
+
+Para la variable **housing** se puede ver que, para quienes aceptar el depósito hay una menor proporción de quienes si tienen el crédito hipotecario a diferencia de los que no aceptan el depósito.
+
+No parece haber asociación en la variable **default** entre los grupos.
+
+En términos generales para la variable **contact,** se contactan a los clientes por medio de celular, pero esta proporción es mucho mayor en los que si aceptan el depósito.
+
+De quienes aceptan el depósito, en la variable **poutcome**, la proporción en los que la campaña fue un éxito es mayor que en los que no aceptan.
+
+En miras de caracterizar los clientes que deciden suscribirse a un depósito a término fijo, a partir de las distintas variables cualitativas y sus categorías, se puede describir a partir de sus valores test a través de la siguiente tabla:
+
+```{r Caract.}
+descrip <- cluster.carac(datos[,nameCat], datos[,'deposit'])
+descrip
+```
+
+Para los individuos que sí aceptaron el depósito a término fijo tenemos lo siguiente:
+
+1.  El 18.5% de quienes fue un éxito la anterior campaña de Marketing dentro de los que aceptaron el depósito es característico, a comparación del promedio global que es de 3.3%. Equivalentemente, el 64.7% de los 1511 clientes en los cuales la campaña fue un éxito, están dentro de los que si aceptan el depósito.
+2.  El 82.6% de quienes fueron contactados pro celular dentro de los que aceptaron el depósito es distintivo, comparado con el promedio que es de 64.8%.
+3.  De los clientes que están en default, sólo el 6.4% de los 816 están en los que aceptaron el depósito.
+4.  Dentro de los que aceptaron el depósito, los meses de Marzo, Septiembre, Octubre y Diciembre en que se realizó el contacto son característicamente superiores en porcentaje al promedio general. Similarmente, el contacto que se realizo con los clientes en los meses de Marzo y Diciembre el 52% y 46.7% se hicieron en el grupo de los que aceptaron el depósito.
+
+```{r ACS}
+K <- unclass(table(datos$job,datos$deposit))
+tabs <- plotct(K,'col')
+
+```
+
+En términos generales de los que se suscriben o no al depósito están muy parecidos al promedio, siendo los administradores los que tienen mayor proporción en esta variable. Sin embargo, de quienes deciden suscribirse al depósito hay una ligera diferencia de los que no trabajan (**notwrk**) esto se puede deber a que anteriormente se agruparon a los pensionados junto con los estudiantes, desempleados y desconocidos.
+
+```{r pf2}
+K <- unclass(table(datos$job, datos$education))
+acs <- dudi.coa(K,scannf = FALSE)
+plot(acs,Tcol = FALSE, ylim=c(-0.5,0.4))
+plot(acs,Trow = FALSE)
+
+
+```
+
+Para el **ACS** entre las variables **job** y **education** se observan que en el primer plano fact
+
+## ACM
+
+Se usaran las variables categóricas como las activas para construir los ejes factoriales
+
+```{r}
+Y <- subset(x = datos,select = nameCat) #Variables Activas
+Ys <- datos[,'deposit'] #Variable suplementaria
+acm <- dudi.acm(Y,scannf = FALSE,nf = 3)
+barplot(acm$eig, las=3)
+
+
+```
+
+```{r}
+plot(acm,Trow = FALSE,gg=TRUE)
+sc <- supqual(acm,Ys)
+plotfp(as.data.frame(sc$coor),col='red',cframe=1,gg=TRUE)
+```
+
+## Modelos binario
+
+Se ajustó un modelo de regresión logística con todas las 16 covariables disponibles en el conjunto de datos. Se seleccionaron por el método backward y el criterio BIC para penelizar por complejidad del modelo y se llego al siguiente modelo:
+
+``` R
+y ~ job + marital + housing + loan + contact + day + month + duration + campaign + poutcome
+```
+
+```{r Modelo1y2, include=FALSE}
+m1 <- glm(y ~ age + job + marital + education + default + balance + housing +
+            loan + contact + day + month + duration + campaign + pdays +
+            previous + poutcome , data = datos, family = binomial)
+
+stepCriterion(m1, direction = 'backward', criterion = 'bic', test = 'wald', verbose=FALSE)
+
+m2 <- glm(y ~ job + marital + housing + loan + contact + day + month + duration + campaign + poutcome, family = binomial(logit),data = datos)
+
+with(m2, 1-deviance*df.null/(null.deviance*df.residual))
+```
+
+Luego se consideraron algunas interacciones que podrían dar sentido según el contexto del problema y se realizo la selección del modelo que minimizara el **BIC** y se obtuvo el siguiente modelo
+
+```{r Modelo3, include=FALSE}
+m3 <- glm(y ~ age + job + marital + education + default + balance + housing +
+            loan + contact + day + month + duration + campaign + pdays +
+            previous + poutcome +
+            + age * balance * job  + housing*loan*job + balance * job, data = datos, family = binomial)
+
+stepCriterion(m3, direction = 'backward', criterion = 'bic', test = 'wald',verbose = FALSE)
+
+
+```
+
+``` R
+y ~ job + marital + housing + loan + contact + day + month + duration + campaign + poutcome + housing:loan
+```
+
+Con la metodología la variable **balance** no resulto estadísticamente significativa, sin embargo dado el contexto se considera que es de importancia, por lo cual se agrego al modelo final que es el 4.
+
+```{r, Modelo4}
+m4 <- glm(formula = y ~ job + marital + housing + loan + contact + day + month + duration + campaign + poutcome + housing:loan  + balance,family = binomial(logit),data = datos)
+with(m4, 1-deviance*df.null/(null.deviance*df.residual))
+```
+
+```{r Estimaciones}
+m4$coefficients
+```
+
+El modelo 4 asume que los valores $Y_1, \dots, Y_{45207}$ son realizaciones de variables aleatorias independientes tal que $Y_i \sim \text{Bernoulli}(\mu_i)$ donde $\log\left(\frac{\mu_i}{1-\mu_i}\right) = \eta_i$
+
+Con el modelo 4 se explica aproximadamente el 33.7% de la varianza de quienes deciden suscribirse a un depósito a término.
+
+**Interpretación de los parámetros.**
+
+Manteniendo las demás variables constantes, para una persona que su situación de trabajo sea o estudiante, pensionado o desconocido, soltero, obrero(blue-collar), no tenga crédito hipotecario ni de consumo, se contacte por teléfono fijo en el mes de enero, y la última campaña de marketing haya sido un fracaso, el chance de suscribirse a un depósito disminuye aproximadamente **96.3%**
+
+```{r}
+1-exp(-3.2908)
+```
+
+Si el último mes en que el cliente fue contactado(a) se tuvo los meses de **Marzo** y **Octubre** manteniendo las demás variables constantes, se estima que el chance de que estos se suscriban a depósito es **18.19** y **8.85** veces mayor
+
+```{r}
+c(exp(2.9011),exp(2.1808))
+```
+
+Si la campaña de marketing anterior resultó exitosa, el chance de suscribirse al depósito es **10.09** veces mayor
+
+```{r}
+exp(2.3122)
+```
+
+Por cada vez que la persona que fue contactada durante la campaña el chance de que se suscriba es **8.72%** menor
