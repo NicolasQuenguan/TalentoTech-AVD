@@ -1,7 +1,12 @@
 ---
 title: "Caracterización de clientes"
 author: "Nicolás Quenguan"
-format: html
+format: 
+  html:
+    code-fold: true
+    code-summary: "Show"
+    code-tools: true
+    theme: cosmo
 editor: visual
 ---
 
@@ -9,7 +14,7 @@ editor: visual
 
 En este cuaderno se usarán diferentes métodos de estadística descriptiva multivariada que permiten descubrir las posibles asociaciones que hay entre individuos, grupos de individuos a través de las mediciones en variables cuantitativas como cualitativas. Se hará uso de **ACM, ACP**
 
-```{r librerias , results='hide'}
+```{r librerias , message=FALSE, warning=FALSE}
 library(FactoClass)
 library(glmtoolbox)
 library(dplyr)
@@ -62,7 +67,8 @@ chisq.carac(datos[,nameCat], datos$y,decr = T)
 
 Con base en los valores p, parece que las tablas de contingencia entre **y** y esas variables no son independientes.
 
-## ACS
+## ACS 
+
 
 ```{r Perfiles_fila}
 # par(mfrow=c(3,3), mai=c(0.3,1,0.2,0.1), las=1,cex=0.4)
@@ -97,12 +103,28 @@ Para los individuos que sí aceptaron el depósito a término fijo tenemos lo si
 3.  De los clientes que están en default, sólo el 6.4% de los 816 están en los que aceptaron el depósito.
 4.  Dentro de los que aceptaron el depósito, los meses de Marzo, Septiembre, Octubre y Diciembre en que se realizó el contacto son característicamente superiores en porcentaje al promedio general. Similarmente, el contacto que se realizo con los clientes en los meses de Marzo y Diciembre el 52% y 46.7% se hicieron en el grupo de los que aceptaron el depósito.
 
+
+## Prueba de pestañas
+::: {.panel-tabset .nav-pills}
+
+#### Prueba
+
 ```{r ACS}
-K <- unclass(table(datos$job,datos$deposit))
+#| echo: true
+K <- unclass(table(datos$y,datos$job))
 tabs <- plotct(K,'col')
 
 ```
+#### Prueba2
 
+```{r ACS2}
+#| echo: true
+K <- unclass(table(datos$y,datos$job))
+tabs <- plotct(K,'row')
+
+```
+
+:::
 En términos generales de los que se suscriben o no al depósito están muy parecidos al promedio, siendo los administradores los que tienen mayor proporción en esta variable. Sin embargo, de quienes deciden suscribirse al depósito hay una ligera diferencia de los que no trabajan (**notwrk**) esto se puede deber a que anteriormente se agruparon a los pensionados junto con los estudiantes, desempleados y desconocidos.
 
 ```{r pf2}
@@ -130,20 +152,26 @@ barplot(acm$eig, las=3)
 ```
 
 ```{r}
-plot(acm,Trow = FALSE,gg=TRUE)
+g_acm <- plot(acm,Trow = FALSE,gg=TRUE)
 sc <- supqual(acm,Ys)
-plotfp(as.data.frame(sc$coor),col='red',cframe=1,gg=TRUE)
+datosaux <- as.data.frame(sc$coor[,1:2])
+g_acm + geom_point(data = datosaux, aes(x = Axis1, y = Axis2), color = "red") +
+  geom_text(data = datosaux, aes(x = Axis1, y = Axis2, label = c('NoAcepto','Acepto')),
+            vjust = -0.3, hjust = 0.3, color = "red")+
+  ggtitle('Primer plano factorial\nACM')
+
+
 ```
 
 ## Modelos binario
 
 Se ajustó un modelo de regresión logística con todas las 16 covariables disponibles en el conjunto de datos. Se seleccionaron por el método backward y el criterio BIC para penelizar por complejidad del modelo y se llego al siguiente modelo:
 
-``` R
+``` r
 y ~ job + marital + housing + loan + contact + day + month + duration + campaign + poutcome
 ```
 
-```{r Modelo1y2, include=FALSE}
+```{r Modelo1y2, eval=FALSE}
 m1 <- glm(y ~ age + job + marital + education + default + balance + housing +
             loan + contact + day + month + duration + campaign + pdays +
             previous + poutcome , data = datos, family = binomial)
@@ -157,7 +185,7 @@ with(m2, 1-deviance*df.null/(null.deviance*df.residual))
 
 Luego se consideraron algunas interacciones que podrían dar sentido según el contexto del problema y se realizo la selección del modelo que minimizara el **BIC** y se obtuvo el siguiente modelo
 
-```{r Modelo3, include=FALSE}
+```{r Modelo3, eval=FALSE}
 m3 <- glm(y ~ age + job + marital + education + default + balance + housing +
             loan + contact + day + month + duration + campaign + pdays +
             previous + poutcome +
@@ -168,7 +196,7 @@ stepCriterion(m3, direction = 'backward', criterion = 'bic', test = 'wald',verbo
 
 ```
 
-``` R
+``` r
 y ~ job + marital + housing + loan + contact + day + month + duration + campaign + poutcome + housing:loan
 ```
 

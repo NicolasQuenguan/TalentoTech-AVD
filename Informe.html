@@ -109,7 +109,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Caracterización de clientes</h1>
+<div class="quarto-title-block"><div><h1 class="title">Caracterización de clientes</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -136,48 +136,28 @@ window.Quarto = {
 <h1>Laboratorio 1</h1>
 <p>En este cuaderno se usarán diferentes métodos de estadística descriptiva multivariada que permiten descubrir las posibles asociaciones que hay entre individuos, grupos de individuos a través de las mediciones en variables cuantitativas como cualitativas. Se hará uso de <strong>ACM, ACP</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoClass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Cargando paquete requerido: ade4</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Cargando paquete requerido: ggplot2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Cargando paquete requerido: ggrepel</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Cargando paquete requerido: xtable</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Cargando paquete requerido: scatterplot3d</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmtoolbox)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Adjuntando el paquete: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoClass)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmtoolbox)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="lectura-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="lectura-de-datos">Lectura de datos</h2>
 <p>Se utilizará el archivo <em>datosBancoMod.csv</em> modificado en python.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">'C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">6nico</span><span class="sc">\\</span><span class="st">Documents</span><span class="sc">\\</span><span class="st">Académico</span><span class="sc">\\</span><span class="st">Talento Tech</span><span class="sc">\\</span><span class="st">Tecnico</span><span class="sc">\\</span><span class="st">datosBancoMod.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">'C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">6nico</span><span class="sc">\\</span><span class="st">Documents</span><span class="sc">\\</span><span class="st">Académico</span><span class="sc">\\</span><span class="st">Talento Tech</span><span class="sc">\\</span><span class="st">Tecnico</span><span class="sc">\\</span><span class="st">datosBancoMod.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Ahora se extraerán las variables categóricas y cuantitativas:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   45207 obs. of  18 variables:
  $ age      : int  58 44 33 47 33 35 28 42 58 43 ...
@@ -199,7 +179,10 @@ Adjuntando el paquete: 'dplyr'</code></pre>
  $ y        : int  0 0 0 0 0 0 0 0 0 0 ...
  $ deposit  : Factor w/ 2 levels "no","si": 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>categoricas <span class="ot">&lt;-</span> <span class="fu">sapply</span>(datos, is.character); categoricas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>categoricas <span class="ot">&lt;-</span> <span class="fu">sapply</span>(datos, is.character); categoricas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      age       job   marital education   default   balance   housing      loan 
     FALSE      TRUE      TRUE      TRUE      TRUE     FALSE      TRUE      TRUE 
@@ -208,8 +191,11 @@ Adjuntando el paquete: 'dplyr'</code></pre>
         y   deposit 
     FALSE     FALSE </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nameCat <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">names</span>(categoricas[categoricas]))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cuantitativas <span class="ot">&lt;-</span> <span class="fu">sapply</span>(datos, is.numeric) ; cuantitativas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nameCat <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">names</span>(categoricas[categoricas]))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cuantitativas <span class="ot">&lt;-</span> <span class="fu">sapply</span>(datos, is.numeric) ; cuantitativas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      age       job   marital education   default   balance   housing      loan 
      TRUE     FALSE     FALSE     FALSE     FALSE      TRUE     FALSE     FALSE 
@@ -220,20 +206,26 @@ Adjuntando el paquete: 'dplyr'</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>datos[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(datos, <span class="cf">function</span>(x) <span class="cf">if</span> (<span class="fu">is.character</span>(x)) <span class="fu">as.factor</span>(x) <span class="cf">else</span> x)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>job <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>job, <span class="at">ref =</span> <span class="st">'bc'</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>marital <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>marital, <span class="at">ref =</span> <span class="st">'single'</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>education <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>education, <span class="at">ref =</span> <span class="st">'primary'</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>default <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>default, <span class="at">ref =</span> <span class="st">'no'</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>housing <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>housing, <span class="at">ref =</span> <span class="st">'no'</span> )</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>loan <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>loan, <span class="at">ref =</span> <span class="st">'no'</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>contact <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>contact, <span class="at">ref =</span> <span class="st">'unknown'</span>)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>month <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>month, <span class="at">ref =</span> <span class="st">'jan'</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>poutcome <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>poutcome, <span class="at">ref =</span> <span class="st">'failure'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>datos[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(datos, <span class="cf">function</span>(x) <span class="cf">if</span> (<span class="fu">is.character</span>(x)) <span class="fu">as.factor</span>(x) <span class="cf">else</span> x)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>job <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>job, <span class="at">ref =</span> <span class="st">'bc'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>marital <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>marital, <span class="at">ref =</span> <span class="st">'single'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>education <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>education, <span class="at">ref =</span> <span class="st">'primary'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>default <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>default, <span class="at">ref =</span> <span class="st">'no'</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>housing <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>housing, <span class="at">ref =</span> <span class="st">'no'</span> )</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>loan <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>loan, <span class="at">ref =</span> <span class="st">'no'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>contact <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>contact, <span class="at">ref =</span> <span class="st">'unknown'</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>month <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>month, <span class="at">ref =</span> <span class="st">'jan'</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>poutcome <span class="ot">&lt;-</span> <span class="fu">relevel</span>(datos<span class="sc">$</span>poutcome, <span class="at">ref =</span> <span class="st">'failure'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Se realiza una prueba Chi cuadrado para determinar si hay independencia de las tablas de contingencia entre la variable <strong>y</strong> y las variables <strong>cualitativas</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.carac</span>(datos[,nameCat], datos<span class="sc">$</span>y,<span class="at">decr =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.carac</span>(datos[,nameCat], datos<span class="sc">$</span>y,<span class="at">decr =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                chi2 dfr          pval      tval         phi2
 month     3063.28321  11  0.000000e+00       Inf 0.0677612584
@@ -252,12 +244,15 @@ default     22.28882   1  2.345679e-06  4.578137 0.0004930392</code></pre>
 <section id="acs" class="level2">
 <h2 class="anchored" data-anchor-id="acs">ACS</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># par(mfrow=c(3,3), mai=c(0.3,1,0.2,0.1), las=1,cex=0.4)</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> nameCat) {</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  tc <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">table</span>(datos<span class="sc">$</span>y, datos[[i]]))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotct</span>(tc,<span class="st">'row'</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">title</span>(<span class="at">main =</span> i)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># par(mfrow=c(3,3), mai=c(0.3,1,0.2,0.1), las=1,cex=0.4)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> nameCat) {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  tc <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">table</span>(datos<span class="sc">$</span>y, datos[[i]]))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotct</span>(tc,<span class="st">'row'</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">title</span>(<span class="at">main =</span> i)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -329,8 +324,11 @@ default     22.28882   1  2.345679e-06  4.578137 0.0004930392</code></pre>
 <p>De quienes aceptan el depósito, en la variable <strong>poutcome</strong>, la proporción en los que la campaña fue un éxito es mayor que en los que no aceptan.</p>
 <p>En miras de caracterizar los clientes que deciden suscribirse a un depósito a término fijo, a partir de las distintas variables cualitativas y sus categorías, se puede describir a partir de sus valores test a través de la siguiente tabla:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>descrip <span class="ot">&lt;-</span> <span class="fu">cluster.carac</span>(datos[,nameCat], datos[,<span class="st">'deposit'</span>])</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>descrip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>descrip <span class="ot">&lt;-</span> <span class="fu">cluster.carac</span>(datos[,nameCat], datos[,<span class="st">'deposit'</span>])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>descrip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>class: no
                     Test.Value p.Value Class.Cat Cat.Class Global Weight
@@ -420,9 +418,19 @@ contact.unknown        -35.030   0.000       4.1      10.0   28.8  13021</code><
 <li>De los clientes que están en default, sólo el 6.4% de los 816 están en los que aceptaron el depósito.</li>
 <li>Dentro de los que aceptaron el depósito, los meses de Marzo, Septiembre, Octubre y Diciembre en que se realizó el contacto son característicamente superiores en porcentaje al promedio general. Similarmente, el contacto que se realizo con los clientes en los meses de Marzo y Diciembre el 52% y 46.7% se hicieron en el grupo de los que aceptaron el depósito.</li>
 </ol>
+</section>
+<section id="prueba-de-pestañas" class="level2">
+<h2 class="anchored" data-anchor-id="prueba-de-pestañas">Prueba de pestañas</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Prueba</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Prueba2</a></li></ul>
+<div class="tab-content nav-pills">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">table</span>(datos<span class="sc">$</span>job,datos<span class="sc">$</span>deposit))</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tabs <span class="ot">&lt;-</span> <span class="fu">plotct</span>(K,<span class="st">'col'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">table</span>(datos<span class="sc">$</span>y,datos<span class="sc">$</span>job))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tabs <span class="ot">&lt;-</span> <span class="fu">plotct</span>(K,<span class="st">'col'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -431,11 +439,33 @@ contact.unknown        -35.030   0.000       4.1      10.0   28.8  13021</code><
 </div>
 </div>
 </div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">table</span>(datos<span class="sc">$</span>y,datos<span class="sc">$</span>job))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tabs <span class="ot">&lt;-</span> <span class="fu">plotct</span>(K,<span class="st">'row'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Informe_files/figure-html/ACS2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <p>En términos generales de los que se suscriben o no al depósito están muy parecidos al promedio, siendo los administradores los que tienen mayor proporción en esta variable. Sin embargo, de quienes deciden suscribirse al depósito hay una ligera diferencia de los que no trabajan (<strong>notwrk</strong>) esto se puede deber a que anteriormente se agruparon a los pensionados junto con los estudiantes, desempleados y desconocidos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">table</span>(datos<span class="sc">$</span>job, datos<span class="sc">$</span>education))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>acs <span class="ot">&lt;-</span> <span class="fu">dudi.coa</span>(K,<span class="at">scannf =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(acs,<span class="at">Tcol =</span> <span class="cn">FALSE</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>,<span class="fl">0.4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">table</span>(datos<span class="sc">$</span>job, datos<span class="sc">$</span>education))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>acs <span class="ot">&lt;-</span> <span class="fu">dudi.coa</span>(K,<span class="at">scannf =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(acs,<span class="at">Tcol =</span> <span class="cn">FALSE</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>,<span class="fl">0.4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -443,7 +473,10 @@ contact.unknown        -35.030   0.000       4.1      10.0   28.8  13021</code><
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(acs,<span class="at">Trow =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(acs,<span class="at">Trow =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -458,10 +491,13 @@ contact.unknown        -35.030   0.000       4.1      10.0   28.8  13021</code><
 <h2 class="anchored" data-anchor-id="acm">ACM</h2>
 <p>Se usaran las variables categóricas como las activas para construir los ejes factoriales</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> datos,<span class="at">select =</span> nameCat) <span class="co">#Variables Activas</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Ys <span class="ot">&lt;-</span> datos[,<span class="st">'deposit'</span>] <span class="co">#Variable suplementaria</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>acm <span class="ot">&lt;-</span> <span class="fu">dudi.acm</span>(Y,<span class="at">scannf =</span> <span class="cn">FALSE</span>,<span class="at">nf =</span> <span class="dv">3</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(acm<span class="sc">$</span>eig, <span class="at">las=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> datos,<span class="at">select =</span> nameCat) <span class="co">#Variables Activas</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Ys <span class="ot">&lt;-</span> datos[,<span class="st">'deposit'</span>] <span class="co">#Variable suplementaria</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>acm <span class="ot">&lt;-</span> <span class="fu">dudi.acm</span>(Y,<span class="at">scannf =</span> <span class="cn">FALSE</span>,<span class="at">nf =</span> <span class="dv">3</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(acm<span class="sc">$</span>eig, <span class="at">las=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -471,9 +507,18 @@ contact.unknown        -35.030   0.000       4.1      10.0   28.8  13021</code><
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(acm,<span class="at">Trow =</span> <span class="cn">FALSE</span>,<span class="at">gg=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>g_acm <span class="ot">&lt;-</span> <span class="fu">plot</span>(acm,<span class="at">Trow =</span> <span class="cn">FALSE</span>,<span class="at">gg=</span><span class="cn">TRUE</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">supqual</span>(acm,Ys)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>datosaux <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sc<span class="sc">$</span>coor[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>g_acm <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> datosaux, <span class="fu">aes</span>(<span class="at">x =</span> Axis1, <span class="at">y =</span> Axis2), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> datosaux, <span class="fu">aes</span>(<span class="at">x =</span> Axis1, <span class="at">y =</span> Axis2, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">'NoAcepto'</span>,<span class="st">'Acepto'</span>)),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>, <span class="at">hjust =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'Primer plano factorial</span><span class="sc">\n</span><span class="st">ACM'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: ggrepel: 8 unlabeled data points (too many overlaps). Consider
+<pre><code>Warning: ggrepel: 7 unlabeled data points (too many overlaps). Consider
 increasing max.overlaps</code></pre>
 </div>
 <div class="cell-output-display">
@@ -483,33 +528,55 @@ increasing max.overlaps</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">supqual</span>(acm,Ys)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotfp</span>(<span class="fu">as.data.frame</span>(sc<span class="sc">$</span>coor),<span class="at">col=</span><span class="st">'red'</span>,<span class="at">cframe=</span><span class="dv">1</span>,<span class="at">gg=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Informe_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
 </div>
 </section>
 <section id="modelos-binario" class="level2">
 <h2 class="anchored" data-anchor-id="modelos-binario">Modelos binario</h2>
 <p>Se ajustó un modelo de regresión logística con todas las 16 covariables disponibles en el conjunto de datos. Se seleccionaron por el método backward y el criterio BIC para penelizar por complejidad del modelo y se llego al siguiente modelo:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> age <span class="sc">+</span> job <span class="sc">+</span> marital <span class="sc">+</span> education <span class="sc">+</span> default <span class="sc">+</span> balance <span class="sc">+</span> housing <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>            loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> pdays <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>            previous <span class="sc">+</span> poutcome , <span class="at">data =</span> datos, <span class="at">family =</span> binomial)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stepCriterion</span>(m1, <span class="at">direction =</span> <span class="st">'backward'</span>, <span class="at">criterion =</span> <span class="st">'bic'</span>, <span class="at">test =</span> <span class="st">'wald'</span>, <span class="at">verbose=</span><span class="cn">FALSE</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome, <span class="at">family =</span> <span class="fu">binomial</span>(logit),<span class="at">data =</span> datos)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(m2, <span class="dv">1</span><span class="sc">-</span>deviance<span class="sc">*</span>df.null<span class="sc">/</span>(null.deviance<span class="sc">*</span>df.residual))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p>Luego se consideraron algunas interacciones que podrían dar sentido según el contexto del problema y se realizo la selección del modelo que minimizara el <strong>BIC</strong> y se obtuvo el siguiente modelo</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome <span class="sc">+</span> housing<span class="sc">:</span>loan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> age <span class="sc">+</span> job <span class="sc">+</span> marital <span class="sc">+</span> education <span class="sc">+</span> default <span class="sc">+</span> balance <span class="sc">+</span> housing <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>            loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> pdays <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>            previous <span class="sc">+</span> poutcome <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>            <span class="sc">+</span> age <span class="sc">*</span> balance <span class="sc">*</span> job  <span class="sc">+</span> housing<span class="sc">*</span>loan<span class="sc">*</span>job <span class="sc">+</span> balance <span class="sc">*</span> job, <span class="at">data =</span> datos, <span class="at">family =</span> binomial)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stepCriterion</span>(m3, <span class="at">direction =</span> <span class="st">'backward'</span>, <span class="at">criterion =</span> <span class="st">'bic'</span>, <span class="at">test =</span> <span class="st">'wald'</span>,<span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome <span class="sc">+</span> housing<span class="sc">:</span>loan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Con la metodología la variable <strong>balance</strong> no resulto estadísticamente significativa, sin embargo dado el contexto se considera que es de importancia, por lo cual se agrego al modelo final que es el 4.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">formula =</span> y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome <span class="sc">+</span> housing<span class="sc">:</span>loan  <span class="sc">+</span> balance,<span class="at">family =</span> <span class="fu">binomial</span>(logit),<span class="at">data =</span> datos)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(m4, <span class="dv">1</span><span class="sc">-</span>deviance<span class="sc">*</span>df.null<span class="sc">/</span>(null.deviance<span class="sc">*</span>df.residual))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">formula =</span> y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome <span class="sc">+</span> housing<span class="sc">:</span>loan  <span class="sc">+</span> balance,<span class="at">family =</span> <span class="fu">binomial</span>(logit),<span class="at">data =</span> datos)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(m4, <span class="dv">1</span><span class="sc">-</span>deviance<span class="sc">*</span>df.null<span class="sc">/</span>(null.deviance<span class="sc">*</span>df.residual))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3369594</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>m4<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>m4<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       (Intercept)             jobind          jobmngmnt          jobnotwrk 
      -5.456321e+00       1.336551e-01       3.608192e-01       5.151886e-01 
@@ -534,26 +601,37 @@ increasing max.overlaps</code></pre>
 <p><strong>Interpretación de los parámetros.</strong></p>
 <p>Manteniendo las demás variables constantes, para una persona que su situación de trabajo sea o estudiante, pensionado o desconocido, soltero, obrero(blue-collar), no tenga crédito hipotecario ni de consumo, se contacte por teléfono fijo en el mes de enero, y la última campaña de marketing haya sido un fracaso, el chance de suscribirse a un depósito disminuye aproximadamente <strong>96.3%</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">3.2908</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">3.2908</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9627759</code></pre>
 </div>
 </div>
 <p>Si el último mes en que el cliente fue contactado(a) se tuvo los meses de <strong>Marzo</strong> y <strong>Octubre</strong> manteniendo las demás variables constantes, se estima que el chance de que estos se suscriban a depósito es <strong>18.19</strong> y <strong>8.85</strong> veces mayor</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">exp</span>(<span class="fl">2.9011</span>),<span class="fu">exp</span>(<span class="fl">2.1808</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">exp</span>(<span class="fl">2.9011</span>),<span class="fu">exp</span>(<span class="fl">2.1808</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 18.194148  8.853386</code></pre>
 </div>
 </div>
 <p>Si la campaña de marketing anterior resultó exitosa, el chance de suscribirse al depósito es <strong>10.09</strong> veces mayor</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">2.3122</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">2.3122</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.09661</code></pre>
 </div>
 </div>
 <p>Por cada vez que la persona que fue contactada durante la campaña el chance de que se suscriba es <strong>8.72%</strong> menor</p>
+<!-- -->
+
 </section>
 </section>
 
@@ -638,6 +716,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -967,7 +1096,247 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb36" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Caracterización de clientes"</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Nicolás Quenguan"</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-summary: "Show"</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># Laboratorio 1</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>En este cuaderno se usarán diferentes métodos de estadística descriptiva multivariada que permiten descubrir las posibles asociaciones que hay entre individuos, grupos de individuos a través de las mediciones en variables cuantitativas como cualitativas. Se hará uso de **ACM, ACP**</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r librerias , message=FALSE, warning=FALSE}</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="in">library(FactoClass)</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="in">library(glmtoolbox)</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="in">library(dplyr)</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lectura de datos</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>Se utilizará el archivo *datosBancoMod.csv* modificado en python.</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r lecturadaDatos}</span></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a><span class="in">datos &lt;- read.csv(file = 'C:\\Users\\6nico\\Documents\\Académico\\Talento Tech\\Tecnico\\datosBancoMod.csv')</span></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">deposit =</span> <span class="fu">ifelse</span>(y <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"si"</span>, <span class="st">"no"</span>))</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>deposit <span class="ot">&lt;-</span> <span class="fu">factor</span>(datos<span class="sc">$</span>deposit)</span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>Ahora se extraerán las variables categóricas y cuantitativas:</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r variables }</span></span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a><span class="in">str(datos)</span></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a><span class="in">categoricas &lt;- sapply(datos, is.character); categoricas</span></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a><span class="in">nameCat &lt;- as.vector(names(categoricas[categoricas]))</span></span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a><span class="in">cuantitativas &lt;- sapply(datos, is.numeric) ; cuantitativas</span></span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{r factores}</span></span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a><span class="in">datos[] &lt;- lapply(datos, function(x) if (is.character(x)) as.factor(x) else x)</span></span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a><span class="in">datos$job &lt;- relevel(datos$job, ref = 'bc')</span></span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a><span class="in">datos$marital &lt;- relevel(datos$marital, ref = 'single')</span></span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a><span class="in">datos$education &lt;- relevel(datos$education, ref = 'primary')</span></span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a><span class="in">datos$default &lt;- relevel(datos$default, ref = 'no')</span></span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a><span class="in">datos$housing &lt;- relevel(datos$housing, ref = 'no' )</span></span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a><span class="in">datos$loan &lt;- relevel(datos$loan, ref = 'no')</span></span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a><span class="in">datos$contact &lt;- relevel(datos$contact, ref = 'unknown')</span></span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a><span class="in">datos$month &lt;- relevel(datos$month, ref = 'jan')</span></span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a><span class="in">datos$poutcome &lt;- relevel(datos$poutcome, ref = 'failure')</span></span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>Se realiza una prueba Chi cuadrado para determinar si hay independencia de las tablas de contingencia entre la variable **y** y las variables **cualitativas**.</span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Tabla}</span></span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a><span class="in">chisq.carac(datos[,nameCat], datos$y,decr = T)</span></span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a>Con base en los valores p, parece que las tablas de contingencia entre **y** y esas variables no son independientes.</span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## ACS </span></span>
+<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Perfiles_fila}</span></span>
+<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a><span class="in"># par(mfrow=c(3,3), mai=c(0.3,1,0.2,0.1), las=1,cex=0.4)</span></span>
+<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a><span class="in">for (i in nameCat) {</span></span>
+<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a><span class="in">  tc &lt;- unclass(table(datos$y, datos[[i]]))</span></span>
+<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a><span class="in">  plotct(tc,'row')</span></span>
+<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a><span class="in">  title(main = i)</span></span>
+<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a>Se observa que para la variable **job** los que aceptan el depósito suelen ser muy similares al promedio, la única diferencia está en que hay una ligera mayor proporción de quienes no trabajan, esto puede ser por la forma en que se establecieron las categorías, en las cuales hay muchos pensionados a diferencia de estudiantes y desempleados.</span>
+<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a>Para la variable **housing** se puede ver que, para quienes aceptar el depósito hay una menor proporción de quienes si tienen el crédito hipotecario a diferencia de los que no aceptan el depósito.</span>
+<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a>No parece haber asociación en la variable **default** entre los grupos.</span>
+<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a>En términos generales para la variable **contact,** se contactan a los clientes por medio de celular, pero esta proporción es mucho mayor en los que si aceptan el depósito.</span>
+<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a>De quienes aceptan el depósito, en la variable **poutcome**, la proporción en los que la campaña fue un éxito es mayor que en los que no aceptan.</span>
+<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a>En miras de caracterizar los clientes que deciden suscribirse a un depósito a término fijo, a partir de las distintas variables cualitativas y sus categorías, se puede describir a partir de sus valores test a través de la siguiente tabla:</span>
+<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Caract.}</span></span>
+<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a><span class="in">descrip &lt;- cluster.carac(datos[,nameCat], datos[,'deposit'])</span></span>
+<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a><span class="in">descrip</span></span>
+<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a>Para los individuos que sí aceptaron el depósito a término fijo tenemos lo siguiente:</span>
+<span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>El 18.5% de quienes fue un éxito la anterior campaña de Marketing dentro de los que aceptaron el depósito es característico, a comparación del promedio global que es de 3.3%. Equivalentemente, el 64.7% de los 1511 clientes en los cuales la campaña fue un éxito, están dentro de los que si aceptan el depósito.</span>
+<span id="cb36-104"><a href="#cb36-104" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>El 82.6% de quienes fueron contactados pro celular dentro de los que aceptaron el depósito es distintivo, comparado con el promedio que es de 64.8%.</span>
+<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>De los clientes que están en default, sólo el 6.4% de los 816 están en los que aceptaron el depósito.</span>
+<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Dentro de los que aceptaron el depósito, los meses de Marzo, Septiembre, Octubre y Diciembre en que se realizó el contacto son característicamente superiores en porcentaje al promedio general. Similarmente, el contacto que se realizo con los clientes en los meses de Marzo y Diciembre el 52% y 46.7% se hicieron en el grupo de los que aceptaron el depósito.</span>
+<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prueba de pestañas</span></span>
+<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset .nav-pills}</span>
+<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Prueba</span></span>
+<span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ACS}</span></span>
+<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: true</span></span>
+<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a><span class="in">K &lt;- unclass(table(datos$y,datos$job))</span></span>
+<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a><span class="in">tabs &lt;- plotct(K,'col')</span></span>
+<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Prueba2</span></span>
+<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-122"><a href="#cb36-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r ACS2}</span></span>
+<span id="cb36-123"><a href="#cb36-123" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: true</span></span>
+<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a><span class="in">K &lt;- unclass(table(datos$y,datos$job))</span></span>
+<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a><span class="in">tabs &lt;- plotct(K,'row')</span></span>
+<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a>En términos generales de los que se suscriben o no al depósito están muy parecidos al promedio, siendo los administradores los que tienen mayor proporción en esta variable. Sin embargo, de quienes deciden suscribirse al depósito hay una ligera diferencia de los que no trabajan (**notwrk**) esto se puede deber a que anteriormente se agruparon a los pensionados junto con los estudiantes, desempleados y desconocidos.</span>
+<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r pf2}</span></span>
+<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a><span class="in">K &lt;- unclass(table(datos$job, datos$education))</span></span>
+<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a><span class="in">acs &lt;- dudi.coa(K,scannf = FALSE)</span></span>
+<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a><span class="in">plot(acs,Tcol = FALSE, ylim=c(-0.5,0.4))</span></span>
+<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a><span class="in">plot(acs,Trow = FALSE)</span></span>
+<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-141"><a href="#cb36-141" aria-hidden="true" tabindex="-1"></a>Para el **ACS** entre las variables **job** y **education** se observan que en el primer plano fact</span>
+<span id="cb36-142"><a href="#cb36-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-143"><a href="#cb36-143" aria-hidden="true" tabindex="-1"></a><span class="fu">## ACM</span></span>
+<span id="cb36-144"><a href="#cb36-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a>Se usaran las variables categóricas como las activas para construir los ejes factoriales</span>
+<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-149"><a href="#cb36-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="at">x =</span> datos,<span class="at">select =</span> nameCat) <span class="co">#Variables Activas</span></span>
+<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a>Ys <span class="ot">&lt;-</span> datos[,<span class="st">'deposit'</span>] <span class="co">#Variable suplementaria</span></span>
+<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a>acm <span class="ot">&lt;-</span> <span class="fu">dudi.acm</span>(Y,<span class="at">scannf =</span> <span class="cn">FALSE</span>,<span class="at">nf =</span> <span class="dv">3</span>)</span>
+<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(acm<span class="sc">$</span>eig, <span class="at">las=</span><span class="dv">3</span>)</span>
+<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-157"><a href="#cb36-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a>g_acm <span class="ot">&lt;-</span> <span class="fu">plot</span>(acm,<span class="at">Trow =</span> <span class="cn">FALSE</span>,<span class="at">gg=</span><span class="cn">TRUE</span>)</span>
+<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">supqual</span>(acm,Ys)</span>
+<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a>datosaux <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sc<span class="sc">$</span>coor[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb36-164"><a href="#cb36-164" aria-hidden="true" tabindex="-1"></a>g_acm <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> datosaux, <span class="fu">aes</span>(<span class="at">x =</span> Axis1, <span class="at">y =</span> Axis2), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb36-165"><a href="#cb36-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> datosaux, <span class="fu">aes</span>(<span class="at">x =</span> Axis1, <span class="at">y =</span> Axis2, <span class="at">label =</span> <span class="fu">c</span>(<span class="st">'NoAcepto'</span>,<span class="st">'Acepto'</span>)),</span>
+<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>, <span class="at">hjust =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span></span>
+<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'Primer plano factorial</span><span class="sc">\n</span><span class="st">ACM'</span>)</span>
+<span id="cb36-168"><a href="#cb36-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-169"><a href="#cb36-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modelos binario</span></span>
+<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a>Se ajustó un modelo de regresión logística con todas las 16 covariables disponibles en el conjunto de datos. Se seleccionaron por el método backward y el criterio BIC para penelizar por complejidad del modelo y se llego al siguiente modelo:</span>
+<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb36-177"><a href="#cb36-177" aria-hidden="true" tabindex="-1"></a>y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome</span>
+<span id="cb36-178"><a href="#cb36-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-179"><a href="#cb36-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-180"><a href="#cb36-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Modelo1y2, eval=FALSE}</span></span>
+<span id="cb36-181"><a href="#cb36-181" aria-hidden="true" tabindex="-1"></a><span class="in">m1 &lt;- glm(y ~ age + job + marital + education + default + balance + housing +</span></span>
+<span id="cb36-182"><a href="#cb36-182" aria-hidden="true" tabindex="-1"></a><span class="in">            loan + contact + day + month + duration + campaign + pdays +</span></span>
+<span id="cb36-183"><a href="#cb36-183" aria-hidden="true" tabindex="-1"></a><span class="in">            previous + poutcome , data = datos, family = binomial)</span></span>
+<span id="cb36-184"><a href="#cb36-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-185"><a href="#cb36-185" aria-hidden="true" tabindex="-1"></a><span class="in">stepCriterion(m1, direction = 'backward', criterion = 'bic', test = 'wald', verbose=FALSE)</span></span>
+<span id="cb36-186"><a href="#cb36-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-187"><a href="#cb36-187" aria-hidden="true" tabindex="-1"></a><span class="in">m2 &lt;- glm(y ~ job + marital + housing + loan + contact + day + month + duration + campaign + poutcome, family = binomial(logit),data = datos)</span></span>
+<span id="cb36-188"><a href="#cb36-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-189"><a href="#cb36-189" aria-hidden="true" tabindex="-1"></a><span class="in">with(m2, 1-deviance*df.null/(null.deviance*df.residual))</span></span>
+<span id="cb36-190"><a href="#cb36-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-191"><a href="#cb36-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-192"><a href="#cb36-192" aria-hidden="true" tabindex="-1"></a>Luego se consideraron algunas interacciones que podrían dar sentido según el contexto del problema y se realizo la selección del modelo que minimizara el **BIC** y se obtuvo el siguiente modelo</span>
+<span id="cb36-193"><a href="#cb36-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-194"><a href="#cb36-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Modelo3, eval=FALSE}</span></span>
+<span id="cb36-195"><a href="#cb36-195" aria-hidden="true" tabindex="-1"></a><span class="in">m3 &lt;- glm(y ~ age + job + marital + education + default + balance + housing +</span></span>
+<span id="cb36-196"><a href="#cb36-196" aria-hidden="true" tabindex="-1"></a><span class="in">            loan + contact + day + month + duration + campaign + pdays +</span></span>
+<span id="cb36-197"><a href="#cb36-197" aria-hidden="true" tabindex="-1"></a><span class="in">            previous + poutcome +</span></span>
+<span id="cb36-198"><a href="#cb36-198" aria-hidden="true" tabindex="-1"></a><span class="in">            + age * balance * job  + housing*loan*job + balance * job, data = datos, family = binomial)</span></span>
+<span id="cb36-199"><a href="#cb36-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-200"><a href="#cb36-200" aria-hidden="true" tabindex="-1"></a><span class="in">stepCriterion(m3, direction = 'backward', criterion = 'bic', test = 'wald',verbose = FALSE)</span></span>
+<span id="cb36-201"><a href="#cb36-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-202"><a href="#cb36-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-203"><a href="#cb36-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-204"><a href="#cb36-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-205"><a href="#cb36-205" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb36-206"><a href="#cb36-206" aria-hidden="true" tabindex="-1"></a>y <span class="sc">~</span> job <span class="sc">+</span> marital <span class="sc">+</span> housing <span class="sc">+</span> loan <span class="sc">+</span> contact <span class="sc">+</span> day <span class="sc">+</span> month <span class="sc">+</span> duration <span class="sc">+</span> campaign <span class="sc">+</span> poutcome <span class="sc">+</span> housing<span class="sc">:</span>loan</span>
+<span id="cb36-207"><a href="#cb36-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-208"><a href="#cb36-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-209"><a href="#cb36-209" aria-hidden="true" tabindex="-1"></a>Con la metodología la variable **balance** no resulto estadísticamente significativa, sin embargo dado el contexto se considera que es de importancia, por lo cual se agrego al modelo final que es el 4.</span>
+<span id="cb36-210"><a href="#cb36-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-211"><a href="#cb36-211" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, Modelo4}</span></span>
+<span id="cb36-212"><a href="#cb36-212" aria-hidden="true" tabindex="-1"></a><span class="in">m4 &lt;- glm(formula = y ~ job + marital + housing + loan + contact + day + month + duration + campaign + poutcome + housing:loan  + balance,family = binomial(logit),data = datos)</span></span>
+<span id="cb36-213"><a href="#cb36-213" aria-hidden="true" tabindex="-1"></a><span class="in">with(m4, 1-deviance*df.null/(null.deviance*df.residual))</span></span>
+<span id="cb36-214"><a href="#cb36-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-215"><a href="#cb36-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-216"><a href="#cb36-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Estimaciones}</span></span>
+<span id="cb36-217"><a href="#cb36-217" aria-hidden="true" tabindex="-1"></a><span class="in">m4$coefficients</span></span>
+<span id="cb36-218"><a href="#cb36-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-219"><a href="#cb36-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-220"><a href="#cb36-220" aria-hidden="true" tabindex="-1"></a>El modelo 4 asume que los valores $Y_1, \dots, Y_{45207}$ son realizaciones de variables aleatorias independientes tal que $Y_i \sim \text{Bernoulli}(\mu_i)$ donde $\log\left(\frac{\mu_i}{1-\mu_i}\right) = \eta_i$</span>
+<span id="cb36-221"><a href="#cb36-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-222"><a href="#cb36-222" aria-hidden="true" tabindex="-1"></a>Con el modelo 4 se explica aproximadamente el 33.7% de la varianza de quienes deciden suscribirse a un depósito a término.</span>
+<span id="cb36-223"><a href="#cb36-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-224"><a href="#cb36-224" aria-hidden="true" tabindex="-1"></a>**Interpretación de los parámetros.**</span>
+<span id="cb36-225"><a href="#cb36-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-226"><a href="#cb36-226" aria-hidden="true" tabindex="-1"></a>Manteniendo las demás variables constantes, para una persona que su situación de trabajo sea o estudiante, pensionado o desconocido, soltero, obrero(blue-collar), no tenga crédito hipotecario ni de consumo, se contacte por teléfono fijo en el mes de enero, y la última campaña de marketing haya sido un fracaso, el chance de suscribirse a un depósito disminuye aproximadamente **96.3%**</span>
+<span id="cb36-227"><a href="#cb36-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-230"><a href="#cb36-230" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-231"><a href="#cb36-231" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">3.2908</span>)</span>
+<span id="cb36-232"><a href="#cb36-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-233"><a href="#cb36-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-234"><a href="#cb36-234" aria-hidden="true" tabindex="-1"></a>Si el último mes en que el cliente fue contactado(a) se tuvo los meses de **Marzo** y **Octubre** manteniendo las demás variables constantes, se estima que el chance de que estos se suscriban a depósito es **18.19** y **8.85** veces mayor</span>
+<span id="cb36-235"><a href="#cb36-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-238"><a href="#cb36-238" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-239"><a href="#cb36-239" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">exp</span>(<span class="fl">2.9011</span>),<span class="fu">exp</span>(<span class="fl">2.1808</span>))</span>
+<span id="cb36-240"><a href="#cb36-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-241"><a href="#cb36-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-242"><a href="#cb36-242" aria-hidden="true" tabindex="-1"></a>Si la campaña de marketing anterior resultó exitosa, el chance de suscribirse al depósito es **10.09** veces mayor</span>
+<span id="cb36-243"><a href="#cb36-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-246"><a href="#cb36-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-247"><a href="#cb36-247" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">2.3122</span>)</span>
+<span id="cb36-248"><a href="#cb36-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-249"><a href="#cb36-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-250"><a href="#cb36-250" aria-hidden="true" tabindex="-1"></a>Por cada vez que la persona que fue contactada durante la campaña el chance de que se suscriba es **8.72%** menor</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
